@@ -1,0 +1,18 @@
+{
+    "name": "rabeh-youcode/youdemy_mvc",
+    "autoload": {
+        "psr-4": {
+            "Controllers\\": "app/controllers/",
+            "Models\\": "app/models/",
+            "Views\\": "app/views/",
+            "Core\\": "core/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Abderrahmane Rabeh",
+            "email": "rabehlife144@gmail.com"
+        }
+    ],
+    "require": {}
+}
