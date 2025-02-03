@@ -11,7 +11,7 @@ class AuthController
 
     public function logout()
     {
-        header('Location: /home');
+        header('Location: ../../index.php?url=home');
     }
 
     public function register()
