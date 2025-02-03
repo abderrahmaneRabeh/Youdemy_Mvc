@@ -5,6 +5,6 @@ class HomeController
 {
     public function index()
     {
-        echo "Bienvenue sur la page d'accueil !";
+        require '../app/views/home.php';
     }
 }
