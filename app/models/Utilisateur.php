@@ -42,9 +42,9 @@ class Utilisateur
     public static function findByEmail($email)
     {
         $db = Database::getInstance()->getConnection();
-        $stmt = $db->prepare("SELECT COUNT(*) FROM utilisateurs WHERE email = :email");
+        $stmt = $db->prepare("SELECT * FROM utilisateurs WHERE email = :email");
         $stmt->execute([':email' => $email]);
-        return $stmt->fetchColumn() > 0; // returns true if email exists, false otherwise
+        return $stmt->fetch();
     }
 
     public function __get($attr)

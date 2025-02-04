@@ -6,8 +6,6 @@ use Models\Enseignant;
 use Models\Etudiant;
 use Models\Utilisateur;
 
-use PDO;
-
 session_start();
 class AuthController extends Controller
 {
@@ -51,13 +49,11 @@ class AuthController extends Controller
                 exit();
             }
 
-            $passwordHashed = password_hash($password, PASSWORD_DEFAULT);
-
-            $user = new Utilisateur($nom, $email, $passwordHashed, $role);
+            $user = new Utilisateur($nom, $email, $password, $role);
             $userId = $user->save();
 
             if ($role == 'etudiant') {
-                $etudiant = new Etudiant($nom, $email, $passwordHashed, 0, $userId);
+                $etudiant = new Etudiant($nom, $email, $password, 0, $userId);
                 $id_etudiant = $etudiant->save();
                 $_SESSION['nom'] = $nom;
                 $_SESSION['id_etudiant'] = $id_etudiant;
@@ -66,10 +62,10 @@ class AuthController extends Controller
                 exit();
 
             } elseif ($role === 'enseignant') {
-                $enseignant = new Enseignant($nom, $email, $passwordHashed, 0, $userId);
+                $enseignant = new Enseignant($nom, $email, $password, 0, $userId);
                 $id_enseignant = $enseignant->save();
 
-                $_SESSION['utilisateur'] = $enseignant;
+                $_SESSION['nom'] = $nom;
                 $_SESSION['id_enseignant'] = $id_enseignant;
                 $_SESSION['role'] = $role;
 
@@ -78,5 +74,46 @@ class AuthController extends Controller
             }
 
         }
+    }
+
+    public function processLogin()
+    {
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            $email = trim($_POST['email']);
+            $password = $_POST['password'];
+
+            $utilisateur = Utilisateur::findByEmail($email);
+
+            if (!$utilisateur) {
+                $_SESSION['error_email'] = "Cet email n'existe pas.";
+                header('Location: ./index.php?url=login');
+                exit();
+            }
+            echo $utilisateur['pw'] . "<br>";
+            echo $password;
+
+            if (!password_verify(trim($password), trim($utilisateur['pw']))) {
+                $_SESSION['error_password'] = "Le mot de passe est incorrect.";
+                header('Location: ./index.php?url=login');
+                exit();
+            }
+
+            if ($utilisateur['role'] == 'etudiant') {
+                $_SESSION['nom'] = $utilisateur['nom'];
+                $_SESSION['id_etudiant'] = $utilisateur['id_utilisateur'];
+                $_SESSION['role'] = $utilisateur['role'];
+                header('Location: ./index.php?url=home');
+                exit();
+            } elseif ($utilisateur['role'] == 'enseignant') {
+                $_SESSION['nom'] = $utilisateur['nom'];
+                $_SESSION['id_enseignant'] = $utilisateur['id_utilisateur'];
+                $_SESSION['role'] = $utilisateur['role'];
+                header('Location: ./index.php?url=home');
+                exit();
+            }
+        }
+
     }
 }

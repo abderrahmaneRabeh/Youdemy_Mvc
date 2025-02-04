@@ -56,7 +56,7 @@
                 </div>
             <?php endif; ?>
 
-            <form id="loginForm" method="post" action="../actions/SeConnecter_action.php">
+            <form id="loginForm" method="post" action="./index.php?url=processLogin">
                 <div class="form-group">
                     <input type="email" class="form-control" id="email" name="email" placeholder="Adresse e-mail"
                         required>
