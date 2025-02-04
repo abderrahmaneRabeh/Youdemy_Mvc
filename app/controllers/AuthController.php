@@ -1,21 +1,23 @@
 <?php
 
 namespace Controllers;
+use Core\Controller;
 
-class AuthController
+
+class AuthController extends Controller
 {
     public function login()
     {
-        require '../app/views/login.php';
+        $this->view('login');
     }
 
     public function logout()
     {
-        header('Location: ../../index.php?url=home');
+        $this->view('logout');
     }
 
     public function register()
     {
-        require '../app/views/register.php';
+        $this->view('register');
     }
 }

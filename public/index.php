@@ -3,6 +3,7 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 use Controllers\HomeController;
 use Controllers\AuthController;
+use Core\Router;
 
 // Define Routes
 $routes = [
@@ -12,25 +13,13 @@ $routes = [
     'register' => ['controller' => 'Controllers\\AuthController', 'method' => 'register'],
 ];
 
+Router::add('home', 'HomeController', 'index');
+Router::add('login', 'AuthController', 'login');
+Router::add('logout', 'AuthController', 'logout');
+Router::add('register', 'AuthController', 'register');
+
 
 $url = $_GET['url'] ?? 'home';
 
-
-if (array_key_exists($url, $routes)) {
-    $controllerName = $routes[$url]['controller'];
-    $actionName = $routes[$url]['method'];
-
-    if (class_exists($controllerName)) {
-        $controller = new $controllerName();
-        if (method_exists($controller, $actionName)) {
-            $controller->$actionName();
-        } else {
-            echo "La méthode <b>$actionName</b> n'existe pas dans le contrôleur <b>$controllerName</b>";
-        }
-    } else {
-        echo "Le contrôleur <b>$controllerName</b> n'existe pas";
-    }
-} else {
-    echo "Page non trouvée";
-}
+Router::dispatch($url);
 
