@@ -1,3 +1,12 @@
+<?php
+session_start();
+// session_destroy();
+
+// echo "<pre>";
+// print_r($_SESSION);
+// echo "</pre>";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -77,16 +86,22 @@
                     <a href="./pages/courses.php" class="nav-item nav-link">Cours</a>
                     <a href="./pages/ListCategory.php" class="nav-item nav-link">Categories</a>
                 </div>
-                <?php if (isset($_SESSION['utilisateur'])): ?>
+                <?php if (isset($_SESSION['role'])): ?>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle"
                             style="text-decoration: none;color: black;font-weight: bold;border-radius: 5px;padding: 5px 10px;background-color: #f5f5f5;"
-                            data-toggle="dropdown"><?php echo $_SESSION['utilisateur']['nom']; ?></a>
+                            data-toggle="dropdown">
+                            <?php if (isset($_SESSION['nom'])): ?>
+                                <?= $_SESSION['nom']; ?>
+                            <?php else: ?>
+                                user
+                            <?php endif; ?>
+                        </a>
                         <div class="dropdown-menu m-0" style="border-radius: 5px;">
-                            <?php if ($_SESSION['utilisateur']['role'] == 'etudiant'): ?>
+                            <?php if ($_SESSION['role'] == 'etudiant'): ?>
                                 <a href="./pages/mesCours.php" class="dropdown-item">Mes Cours</a>
                             <?php endif; ?>
-                            <a href="./actions/lougout.php" class="dropdown-item"><i class="fas fa-sign-out-alt"></i></a>
+                            <a href="./index.php?url=logout" class="dropdown-item"><i class="fas fa-sign-out-alt"></i></a>
                         </div>
                     </div>
                 <?php else: ?>

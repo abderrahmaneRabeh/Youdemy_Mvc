@@ -6,10 +6,9 @@ use Models\Enseignant;
 use Models\Etudiant;
 use Models\Utilisateur;
 
+use PDO;
+
 session_start();
-
-
-
 class AuthController extends Controller
 {
     public function login()
@@ -19,7 +18,9 @@ class AuthController extends Controller
 
     public function logout()
     {
-        $this->view('logout');
+        session_destroy();
+        header('Location: ./index.php?url=home');
+        exit();
     }
 
     public function register()
@@ -55,23 +56,18 @@ class AuthController extends Controller
             $user = new Utilisateur($nom, $email, $passwordHashed, $role);
             $userId = $user->save();
 
-            if ($role === 'etudiant') {
+            if ($role == 'etudiant') {
                 $etudiant = new Etudiant($nom, $email, $passwordHashed, 0, $userId);
                 $id_etudiant = $etudiant->save();
-                $_SESSION['success'] = "Inscription reussie. Vous pouvez maintenant vous connecter.";
-
-                $_SESSION['utilisateur'] = $etudiant;
+                $_SESSION['nom'] = $nom;
                 $_SESSION['id_etudiant'] = $id_etudiant;
                 $_SESSION['role'] = $role;
-
                 header('Location: ./index.php?url=home');
                 exit();
 
             } elseif ($role === 'enseignant') {
                 $enseignant = new Enseignant($nom, $email, $passwordHashed, 0, $userId);
                 $id_enseignant = $enseignant->save();
-
-                $_SESSION['success'] = "Inscription reussie. Vous pouvez maintenant vous connecter.";
 
                 $_SESSION['utilisateur'] = $enseignant;
                 $_SESSION['id_enseignant'] = $id_enseignant;
