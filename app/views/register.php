@@ -1,9 +1,13 @@
 <?php
 
-session_start();
+// session_start();
 
 // require_once '../middlewares/SeConnecterRedirect.php';   
 // seConnecterRedirect();
+
+// echo "<pre>";
+// print_r($_SESSION);
+// echo "</pre>";
 ?>
 
 <!DOCTYPE html>
@@ -144,7 +148,7 @@ session_start();
                 </a>
                 <p class="text-muted my-3">Cr&eacute;ez votre compte pour commencer &agrave; apprendre</p>
             </div>
-            <form id="registerForm" method="POST" action="../actions/Sinscrire_action.php">
+            <form id="registerForm" method="POST" action="./index.php?url=processRegistration">
                 <div class="form-group">
                     <input type="text" class="form-control" id="name" name="name" placeholder="Nom complet" required>
                     <div class="invalid-feedback">Veuillez entrer votre nom correct.</div>
