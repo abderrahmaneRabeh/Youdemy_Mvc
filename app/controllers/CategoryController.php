@@ -8,7 +8,7 @@ use Models\Category;
 class CategoryController extends Controller
 {
 
-    public function categoryList()
+    public function index()
     {
         $page = $_GET['page'] ?? 1;
         $categories = Category::getCategoriesDetails($page);

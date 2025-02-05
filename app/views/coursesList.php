@@ -3,13 +3,13 @@ session_start();
 
 
 
-if (isset($_GET['page'])) {
-    $page = $_GET['page'];
-} else {
-    $page = 1;
-}
+// if (isset($_GET['page'])) {
+//     $page = $_GET['page'];
+// } else {
+//     $page = 1;
+// }
 
-$filter = 0;
+// $filter = 0;
 // if (isset($_GET['tag_filter'])) {
 //     $filter = $_GET['tag_filter'];
 //     $listCoursObj = $courseModel->afficherCours($page, $filter);
@@ -25,8 +25,8 @@ $filter = 0;
 // $LignesSelectioner = ceil($totalLignes / $LigneParPage);
 
 // echo '<pre>';
-// print_r($LigneParPage);
-// print_r($totalLignes);
+// print_r($listCoursObj);
+// // print_r($totalLignes);
 // echo '</pre>';
 
 ?>

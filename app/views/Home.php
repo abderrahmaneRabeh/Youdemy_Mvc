@@ -1,11 +1,4 @@
-<?php
-session_start();
-// session_destroy();
-
-// echo "<pre>";
-// print_r($_SESSION);
-// echo "</pre>";
-?>
+<?php session_start(); ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -82,7 +75,7 @@ session_start();
             <div class="collapse navbar-collapse justify-content-between px-lg-3" id="navbarCollapse">
                 <div class="navbar-nav mx-auto py-0">
                     <a href="./index.php?url=home" class="nav-item nav-link active">Accueil</a>
-                    <a href="./pages/courses.php" class="nav-item nav-link">Cours</a>
+                    <a href="./index.php?url=coursesList" class="nav-item nav-link">Cours</a>
                     <a href="./index.php?url=categoryList" class="nav-item nav-link">Categories</a>
                 </div>
                 <?php if (isset($_SESSION['role'])): ?>

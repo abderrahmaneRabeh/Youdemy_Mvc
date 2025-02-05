@@ -12,8 +12,8 @@ Router::add('logout', 'AuthController', 'logout');
 Router::add('register', 'AuthController', 'register');
 Router::add('processRegistration', 'AuthController', 'processRegistration');
 Router::add('processLogin', 'AuthController', 'processLogin');
-Router::add('categoryList', 'CategoryController', method: 'categoryList');
-
+Router::add('categoryList', 'CategoryController', 'index');
+Router::add('coursesList', 'CourseController', 'index');
 
 $url = $_GET['url'] ?? 'home';
 
