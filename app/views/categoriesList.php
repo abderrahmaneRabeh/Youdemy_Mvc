@@ -183,41 +183,6 @@ session_start();
                     </div>
                 <?php endforeach; ?>
             </div>
-
-            <!-- <nav>
-                <ul class="pagination justify-content-center mb-0">
-                    <li class="page-item">
-                        <?php
-                        if ($page > 1) {
-                            $previous = $page - 1;
-                            echo "<a class='page-link' href='?page=$previous'><i class='fa fa-angle-double-left'></i></a>";
-                        } else {
-                            echo "<a class='page-link' href='?page=1'><i class='fa fa-angle-double-left'></i></a>";
-                        }
-                        ?>
-                    </li>
-                    <?php
-                    for ($i = 1; $i <= $LignesSelectioner; $i++) {
-                        if ($page == $i) {
-                            echo "<li class='page-item active'><a class='page-link' href='#'>$i<span class='sr-only'></span></a></li>";
-                        } else {
-                            echo "<li class='page-item'><a class='page-link' href='?page=$i'>$i</a></li>";
-                        }
-                    }
-                    ?>
-                    <li class="page-item">
-                        <?php
-                        if ($page < $LignesSelectioner) {
-                            $suivant = $page + 1;
-                            echo "<a class='page-link' href='?page=$suivant'><i class='fa fa-angle-double-right'></i></a>";
-                        } else {
-                            echo "<a class='page-link' href='?page=$LignesSelectioner'><i class='fa fa-angle-double-right'></i></a>";
-                        }
-                        ?>
-                    </li>
-                </ul>
-            </nav> -->
-
             <nav>
                 <ul class="pagination justify-content-center mb-0">
                     <li class="page-item">

@@ -11,6 +11,10 @@ class CourseController extends Controller
     {
         $page = $_GET['page'] ?? 1;
         $courses = Course::afficherCours($page);
+
+        $totalCourses = Course::Nbr_Cours();
+        $totalPages = ceil($totalCourses / Course::$coursePerPage);
+
         $listCoursObj = [];
 
         foreach ($courses as $course) {
@@ -27,6 +31,10 @@ class CourseController extends Controller
             );
         }
 
-        $this->view('coursesList', ['listCoursObj' => $listCoursObj]);
+        $this->view('coursesList', [
+            'listCoursObj' => $listCoursObj,
+            'currentPage' => $page,
+            'totalPages' => $totalPages
+        ]);
     }
 }

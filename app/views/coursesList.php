@@ -223,46 +223,37 @@ session_start();
                 <?php endif; ?>
 
                 <div class="col-12">
-                    <!-- <nav>
+                    <nav>
                         <ul class="pagination justify-content-center mb-0">
                             <li class="page-item">
-                                <?php
-                                if ($page > 1) {
-                                    $previous = $page - 1;
-                                    echo "<a class='page-link' href='?tag_filter=$filter&page=$previous'><i class='fa fa-angle-double-left'></i></a>";
-                                } else {
-                                    echo "<a class='page-link' href='?tag_filter=$filter&page=1'><i class='fa fa-angle-double-left'></i></a>";
-                                }
-                                ?>
+                                <?php if ($currentPage > 1): ?>
+                                    <a class="page-link" href="?url=coursesList&page=<?= $currentPage - 1 ?>"><i
+                                            class="fa fa-angle-double-left"></i></a>
+                                <?php else: ?>
+                                    <a class="page-link disabled"><i class="fa fa-angle-double-left"></i></a>
+                                <?php endif; ?>
                             </li>
-                            <?php
 
-                            for ($i = 1; $i <= $LignesSelectioner; $i++) {
-                                if ($page == $i) {
-                                    echo "<li class='page-item active'><a class='page-link' href='#'>$i<span class='sr-only'></span></a></li>";
-                                } else {
-                                    echo "<li class='page-item'><a class='page-link' href='?tag_filter=$filter&page=$i'>$i</a></li>";
-                                }
-                            }
-
-                            ?>
-
+                            <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                                <?php if ($currentPage == $i): ?>
+                                    <li class="page-item active"><a class="page-link" href="#"><?= $i ?></a></li>
+                                <?php else: ?>
+                                    <li class="page-item"><a class="page-link"
+                                            href="?url=coursesList&page=<?= $i ?>"><?= $i ?></a>
+                                    </li>
+                                <?php endif; ?>
+                            <?php endfor; ?>
 
                             <li class="page-item">
-                                <?php
-
-                                if ($page < $LignesSelectioner) {
-                                    $suivant = $page + 1;
-                                    echo "<a class='page-link' href='?tag_filter=$filter&page=$suivant'><i class='fa fa-angle-double-right'></i></a>";
-                                } else {
-                                    echo "<a class='page-link' href='?tag_filter=$filter&page=$LignesSelectioner'><i class='fa fa-angle-double-right'></i></a>";
-
-                                }
-
-                                ?>
+                                <?php if ($currentPage < $totalPages): ?>
+                                    <a class="page-link" href="?url=coursesList&page=<?= $currentPage + 1 ?>"><i
+                                            class="fa fa-angle-double-right"></i></a>
+                                <?php else: ?>
+                                    <a class="page-link disabled"><i class="fa fa-angle-double-right"></i></a>
+                                <?php endif; ?>
                             </li>
                         </ul>
-                    </nav> -->
+                    </nav>
                 </div>
             </div>
         </div>
