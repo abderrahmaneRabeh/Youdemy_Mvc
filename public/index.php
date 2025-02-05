@@ -12,6 +12,7 @@ Router::add('logout', 'AuthController', 'logout');
 Router::add('register', 'AuthController', 'register');
 Router::add('processRegistration', 'AuthController', 'processRegistration');
 Router::add('processLogin', 'AuthController', 'processLogin');
+Router::add('categoryList', 'CategoryController', method: 'categoryList');
 
 
 $url = $_GET['url'] ?? 'home';
