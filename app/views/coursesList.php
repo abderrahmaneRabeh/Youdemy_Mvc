@@ -1,35 +1,4 @@
-<?php
-session_start();
-
-
-
-// if (isset($_GET['page'])) {
-//     $page = $_GET['page'];
-// } else {
-//     $page = 1;
-// }
-
-// $filter = 0;
-// if (isset($_GET['tag_filter'])) {
-//     $filter = $_GET['tag_filter'];
-//     $listCoursObj = $courseModel->afficherCours($page, $filter);
-// } else {
-//     $listCoursObj = $courseModel->afficherCours($page);
-// }
-
-// $TagsObj = $TagModel->getAllTags();
-
-// $LigneParPage = AfficherListeCoursModel::$coursePerPage;
-// $totalLignes = $courseModel->Nbr_Cours();
-
-// $LignesSelectioner = ceil($totalLignes / $LigneParPage);
-
-// echo '<pre>';
-// print_r($listCoursObj);
-// // print_r($totalLignes);
-// echo '</pre>';
-
-?>
+<?php session_start(); ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -100,8 +69,6 @@ session_start();
         </div>
     </div>
     <!-- Topbar End -->
-
-
     <!-- Navbar Start -->
     <div class="container-fluid p-0">
         <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0 px-lg-5">
@@ -136,8 +103,6 @@ session_start();
         </nav>
     </div>
     <!-- Navbar End -->
-
-
     <!-- Header Start -->
     <div class="jumbotron jumbotron-fluid page-header position-relative overlay-bottom">
         <div class="container text-center">
@@ -151,8 +116,6 @@ session_start();
         </div>
     </div>
     <!-- Header End -->
-
-
     <!-- Courses Start -->
     <div class="container-fluid ">
         <div class="container">
@@ -259,8 +222,6 @@ session_start();
         </div>
     </div>
     <!-- Courses End -->
-
-
     <!-- Footer Start -->
     <div class="container-fluid position-relative overlay-top bg-dark text-white-50 py-5" style="margin-top: 90px;">
         <div class="container mt-5 pt-5">
@@ -322,7 +283,7 @@ session_start();
             let searchValue = event.target.value;
 
             if (searchValue.length > 0) {
-                fetch(`../actions/FetchCourses.php?search=${searchValue}`)
+                fetch(`./index.php?url=FetchCourses&search=${searchValue}`)
                     .then(response => response.json())
                     .then(articles => {
 
@@ -343,7 +304,7 @@ session_start();
                             div.className = "col-lg-4 col-md-6 pb-4";
                             div.innerHTML = `
                             <a class="courses-list-item position-relative d-block overflow-hidden mb-2" href="./CourseDetails.php?id=${article.id_cour}">
-                                <img class="img-fluid" src="${article.imgPrincipale_cours}" alt="${article.titre_cour}">
+                                <img class="img-fluid" src="${article.imgprincipale_cours}" alt="${article.titre_cour}">
                                 <div class="courses-text">
                                     <h4 class="text-center text-white px-3">${article.titre_cour}</h4>
                                     <div class="border-top w-100 mt-3">
@@ -362,8 +323,6 @@ session_start();
 
 
                     })
-
-
             }
         })
     </script>

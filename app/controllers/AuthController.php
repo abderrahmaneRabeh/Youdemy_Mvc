@@ -91,8 +91,8 @@ class AuthController extends Controller
                 header('Location: ./index.php?url=login');
                 exit();
             }
-            echo $utilisateur['pw'] . "<br>";
-            echo $password;
+            // echo $utilisateur['pw'] . "<br>";
+            // echo $password;
 
             if (!password_verify(trim($password), trim($utilisateur['pw']))) {
                 $_SESSION['error_password'] = "Le mot de passe est incorrect.";

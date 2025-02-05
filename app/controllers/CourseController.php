@@ -37,4 +37,14 @@ class CourseController extends Controller
             'totalPages' => $totalPages
         ]);
     }
+
+    public function fetchCourses()
+    {
+        if (isset($_GET['search'])) {
+            $search = $_GET['search'];
+            $ListCourses = Course::fetchAllCourses($search);
+            echo json_encode($ListCourses);
+
+        }
+    }
 }
