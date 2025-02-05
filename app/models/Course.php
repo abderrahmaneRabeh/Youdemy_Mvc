@@ -99,6 +99,16 @@ class Course
         return $stmt->fetchAll();
     }
 
+    public function CourseDetails($id_cours)
+    {
+        $sql = "SELECT * FROM cours co join categories ca on co.category_id = ca.id_category join enseignants en on co.id_enseignant = en.id_enseignant join utilisateurs u on en.id_utilisateur = u.id_utilisateur WHERE co.id_cour = :id_cour";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':id_cour', $id_cours);
+        $stmt->execute();
+        $course = $stmt->fetch();
+
+        return $course;
+    }
 
 
     public function __get($attr)

@@ -134,24 +134,29 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="d-flex align-items-center justify-content-end">
-                        <form class="d-flex align-items-center" method="GET">
+                        <form action="./index.php" class="d-flex align-items-center" method="GET">
+                            <input type="hidden" name="url" value="coursesList">
                             <select name="tag_filter" id="tag_filter" class="form-control border-0 shadow-sm px-4"
                                 style="background-color: #f5f5f5;" onchange="this.form.submit()">
                                 <option value="0" selected>Sélectionnez des mots-clés</option>
-                                <?php foreach ($TagsObj as $tag): ?>
-                                    <?php if ($filter == $tag->id_tag): ?>
-                                        <option value="<?php echo $tag->id_tag; ?>" selected>
-                                            <?php echo $tag->tag_name; ?>
-                                        </option>
-                                    <?php else: ?>
-                                        <option value="<?php echo $tag->id_tag; ?>">
-                                            <?php echo $tag->tag_name; ?>
-                                        </option>
-                                    <?php endif ?>
-                                <?php endforeach; ?>
-
+                                <?php if (!empty($tagsObj)): ?>
+                                    <?php foreach ($tagsObj as $tag): ?>
+                                        <?php if ($filter == $tag->id_tag): ?>
+                                            <option value="<?php echo $tag->id_tag; ?>" selected>
+                                                <?php echo $tag->tag_name; ?>
+                                            </option>
+                                        <?php else: ?>
+                                            <option value="<?php echo $tag->id_tag; ?>">
+                                                <?php echo $tag->tag_name; ?>
+                                            </option>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                <?php else: ?>
+                                    <option value="0" disabled>Sélectionnez des mots-clés</option>
+                                <?php endif; ?>
                             </select>
                         </form>
+
                     </div>
                 </div>
             </div>

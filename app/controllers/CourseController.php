@@ -4,13 +4,15 @@ namespace Controllers;
 
 use Core\Controller;
 use Models\Course;
+use Models\Tag;
 
 class CourseController extends Controller
 {
     public function index()
     {
         $page = $_GET['page'] ?? 1;
-        $courses = Course::afficherCours($page);
+        $filter = $_GET['tag_filter'] ?? 0;
+        $courses = Course::afficherCours($page, $filter);
 
         $totalCourses = Course::Nbr_Cours();
         $totalPages = ceil($totalCourses / Course::$coursePerPage);
@@ -31,10 +33,22 @@ class CourseController extends Controller
             );
         }
 
+        $tags = Tag::getAllTags();
+
+        $tagsObj = [];
+
+        foreach ($tags as $tag) {
+            $id_tag = $tag['id_tag'];
+            $tag_name = $tag['tag_name'];
+
+            $tagsObj[] = new Tag($tag_name, $id_tag);
+        }
         $this->view('coursesList', [
             'listCoursObj' => $listCoursObj,
             'currentPage' => $page,
-            'totalPages' => $totalPages
+            'totalPages' => $totalPages,
+            'tagsObj' => $tagsObj,
+            'filter' => $filter
         ]);
     }
 
