@@ -16,9 +16,10 @@ Router::add('processRegistration', 'AuthController', 'processRegistration');
 Router::add('processLogin', 'AuthController', 'processLogin');
 
 Router::add('categoryList', 'CategoryController', 'index');
-Router::add('coursesList', 'CourseController', 'index');
 
+Router::add('coursesList', 'CourseController', 'index');
 Router::add('FetchCourses', 'CourseController', 'fetchCourses');
+Router::add('courseDetail', 'CourseController', 'CourseDetails');
 
 Router::add('tagList', 'TagController', 'index');
 

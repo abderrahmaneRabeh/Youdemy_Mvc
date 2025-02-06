@@ -99,15 +99,26 @@ class Course
         return $stmt->fetchAll();
     }
 
-    public function CourseDetails($id_cours)
+    public static function CourseDetails($id_cours)
     {
+        $db = Database::getInstance()->getConnection();
         $sql = "SELECT * FROM cours co join categories ca on co.category_id = ca.id_category join enseignants en on co.id_enseignant = en.id_enseignant join utilisateurs u on en.id_utilisateur = u.id_utilisateur WHERE co.id_cour = :id_cour";
-        $stmt = $this->db->prepare($sql);
+        $stmt = $db->prepare($sql);
         $stmt->bindValue(':id_cour', $id_cours);
         $stmt->execute();
         $course = $stmt->fetch();
 
         return $course;
+    }
+
+    public static function CoursTag($id_cours)
+    {
+        $db = Database::getInstance()->getConnection();
+        $sql = "SELECT * FROM cours_tags join tags on cours_tags.id_tag = tags.id_tag WHERE id_cour = :id_cour";
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':id_cour', $id_cours);
+        $stmt->execute();
+        return $stmt->fetchAll();
     }
 
 

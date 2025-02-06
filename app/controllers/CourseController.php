@@ -61,4 +61,29 @@ class CourseController extends Controller
 
         }
     }
+
+    public function CourseDetails()
+    {
+        $id = $_GET['id'];
+
+        $course = Course::CourseDetails($id);
+        $courseTags = Course::CoursTag($id);
+
+        $courseObj = new Course(
+            $course['titre_cour'],
+            $course['imgprincipale_cours'],
+            $course['imgsecondaire_cours'],
+            $course['description_cours'],
+            $course['contenu_cours'],
+            $course['category_name'],
+            $course['nom'],
+            $course['is_video'],
+            $course['id_cour']
+        );
+
+        $this->view('CourseDetail', [
+            'course' => $courseObj,
+            'courseTags' => $courseTags
+        ]);
+    }
 }
