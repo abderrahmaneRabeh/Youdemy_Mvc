@@ -122,6 +122,5 @@ class AuthController extends Controller
                 exit();
             }
         }
-
     }
 }

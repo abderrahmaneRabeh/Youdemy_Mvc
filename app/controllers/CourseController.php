@@ -93,7 +93,27 @@ class CourseController extends Controller
 
     public function MyCourses()
     {
-        $courses = Course::EtudinatsCours($_SESSION['id_etudiant']);
+        $courses = Course::EtudinatsCours($_SESSION['id_utilisateur']);
+
+        // $listCoursObj = [];
+
+        // foreach ($courses as $course) {
+        //     $listCoursObj[] = new Course(
+        //         $course['titre_cour'],
+        //         $course['imgprincipale_cours'],
+        //         $course['imgsecondaire_cours'],
+        //         $course['description_cours'],
+        //         $course['contenu_cours'],
+        //         $course['category_name'],
+        //         $course['nom'],
+        //         $course['is_video'],
+        //         $course['id_cour']
+        //     );
+        // }
+
+        $this->view('MyCours', [
+            'MyCours' => $courses
+        ]);
     }
 
 

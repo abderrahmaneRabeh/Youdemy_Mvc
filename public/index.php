@@ -20,6 +20,7 @@ Router::add('categoryList', 'CategoryController', 'index');
 Router::add('coursesList', 'CourseController', 'index');
 Router::add('FetchCourses', 'CourseController', 'fetchCourses');
 Router::add('courseDetail', 'CourseController', 'CourseDetails');
+Router::add('myCourses', 'CourseController', 'MyCourses');
 
 Router::add('tagList', 'TagController', 'index');
 

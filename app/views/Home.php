@@ -1,7 +1,4 @@
-<?php session_start();
-echo "<pre>";
-print_r($_SESSION);
-echo "</pre>"; ?>
+<?php session_start(); ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -94,7 +91,7 @@ echo "</pre>"; ?>
                         </a>
                         <div class="dropdown-menu m-0" style="border-radius: 5px;">
                             <?php if ($_SESSION['role'] == 'etudiant'): ?>
-                                <a href="./pages/mesCours.php" class="dropdown-item">Mes Cours</a>
+                                <a href="./index.php?url=myCourses" class="dropdown-item">Mes Cours</a>
                             <?php endif; ?>
                             <a href="./index.php?url=logout" class="dropdown-item"><i class="fas fa-sign-out-alt"></i></a>
                         </div>
