@@ -120,6 +120,14 @@ class AuthController extends Controller
 
                 header('Location: ./index.php?url=home');
                 exit();
+            } elseif ($utilisateur['role'] == 'administrateur') {
+
+                $_SESSION['nom'] = $utilisateur['nom'];
+                $_SESSION['id_utilisateur'] = $utilisateur['id_utilisateur'];
+                $_SESSION['role'] = $utilisateur['role'];
+
+                header('Location: ./index.php?url=userPanel');
+                exit();
             }
         }
     }

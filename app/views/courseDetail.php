@@ -245,12 +245,12 @@
                                     Vous êtes déjà inscrit à ce cours.
                                 </div>
                             <?php else: ?>
-                                <?php if (isset($_SESSION['utilisateur'])): ?>
+                                <?php if (isset($_SESSION['id_etudiant'])): ?>
                                     <a class="btn btn-block btn-secondary py-3 px-5"
                                         href="../actions/Inscrivez_vous.php?id_cour=<?= $course->id_cour ?>">Inscrivez-vous</a>
                                 <?php else: ?>
-                                    <a class="btn btn-block btn-secondary py-3 px-5"
-                                        href="./seConnecter.php?id_page=<?= $course->id_cour ?>">Se connecter</a>
+                                    <a class="btn btn-block btn-secondary py-3 px-5" href="../index.php?url=login">Se
+                                        connecter</a>
                                 <?php endif; ?>
                             <?php endif; ?>
 

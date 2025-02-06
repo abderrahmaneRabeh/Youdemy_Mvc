@@ -70,7 +70,11 @@ class CourseController extends Controller
 
         $course = Course::CourseDetails($id);
         $courseTags = Course::CoursTag($id);
-        $isInscription = Course::getUserInscriptions($_SESSION['id_etudiant'], $id);
+        if (isset($_SESSION['id_etudiant'])) {
+            $isInscription = Course::getUserInscriptions($_SESSION['id_etudiant'], $id);
+        } else {
+            $isInscription = false;
+        }
 
         $courseObj = new Course(
             $course['titre_cour'],

@@ -2,6 +2,8 @@
 
 namespace Models;
 
+use Core\Database;
+
 class Etudiant extends Utilisateur
 {
     private $is_banned;
@@ -21,6 +23,15 @@ class Etudiant extends Utilisateur
 
         $this->id_etudiant = $stmt->fetchColumn();
         return $this->id_etudiant;
+    }
+
+    public static function getAllEtudiants()
+    {
+        $db = Database::getInstance()->getConnection();
+        $sql = "SELECT * FROM utilisateurs u join etudiants e on u.id_utilisateur = e.id_utilisateur";
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
     }
 
     public function __get($attr)
