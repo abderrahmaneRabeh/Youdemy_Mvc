@@ -29,7 +29,10 @@ Router::add('tagList', 'TagController', 'index');
 
 // Dasgboard
 Router::add('userPanel', 'DashboardController', 'Utilisateurs');
-
+Router::add('statistiques', 'DashboardController', 'Statistiques');
+Router::add('coursAdminPanel', 'DashboardController', 'GestionCoursAdmin');
+Router::add('tagsPanel', 'DashboardController', 'GestionTags');
+Router::add('categoriesPanel', 'DashboardController', 'GestionCategories');
 // Routing
 $url = $_GET['url'] ?? 'home';
 Router::dispatch($url);

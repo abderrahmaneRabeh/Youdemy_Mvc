@@ -92,7 +92,14 @@ class Course
     {
         $db = Database::getInstance()->getConnection();
         $search = "%$search%";
-        $sql = "SELECT * FROM cours co join categories ca on co.category_id = ca.id_category join enseignants en on co.id_enseignant = en.id_enseignant join utilisateurs u on en.id_utilisateur = u.id_utilisateur WHERE co.titre_cour LIKE :search OR ca.category_name LIKE :search OR u.nom LIKE :search";
+        $sql = "SELECT * FROM cours co join categories ca on 
+        co.category_id = ca.id_category join enseignants en on 
+        co.id_enseignant = en.id_enseignant join utilisateurs u on 
+        en.id_utilisateur = u.id_utilisateur WHERE 
+        co.titre_cour LIKE :search OR 
+        ca.category_name LIKE :search OR 
+        u.nom LIKE :search";
+
         $stmt = $db->prepare($sql);
         $stmt->bindValue(':search', $search);
         $stmt->execute();
@@ -102,7 +109,11 @@ class Course
     public static function CourseDetails($id_cours)
     {
         $db = Database::getInstance()->getConnection();
-        $sql = "SELECT * FROM cours co join categories ca on co.category_id = ca.id_category join enseignants en on co.id_enseignant = en.id_enseignant join utilisateurs u on en.id_utilisateur = u.id_utilisateur WHERE co.id_cour = :id_cour";
+        $sql = "SELECT * FROM cours co join categories ca on 
+        co.category_id = ca.id_category join enseignants en on 
+        co.id_enseignant = en.id_enseignant join utilisateurs u on 
+        en.id_utilisateur = u.id_utilisateur 
+        WHERE co.id_cour = :id_cour";
         $stmt = $db->prepare($sql);
         $stmt->bindValue(':id_cour', $id_cours);
         $stmt->execute();
@@ -114,7 +125,9 @@ class Course
     public static function CoursTag($id_cours)
     {
         $db = Database::getInstance()->getConnection();
-        $sql = "SELECT * FROM cours_tags join tags on cours_tags.id_tag = tags.id_tag WHERE id_cour = :id_cour";
+        $sql = "SELECT * FROM cours_tags join tags on 
+        cours_tags.id_tag = tags.id_tag 
+        WHERE id_cour = :id_cour";
         $stmt = $db->prepare($sql);
         $stmt->bindValue(':id_cour', $id_cours);
         $stmt->execute();
@@ -124,7 +137,9 @@ class Course
     public static function getUserInscriptions($id_etudiant, $id_cour)
     {
         $db = Database::getInstance()->getConnection();
-        $sql = "SELECT * FROM inscription WHERE id_etudiant = :id_etudiant and id_cour = :id_cour";
+        $sql = "SELECT * FROM inscription WHERE 
+        id_etudiant = :id_etudiant and 
+        id_cour = :id_cour";
         $stmt = $db->prepare($sql);
         $stmt->bindValue(':id_etudiant', $id_etudiant);
         $stmt->bindValue(':id_cour', $id_cour);
@@ -135,9 +150,25 @@ class Course
     public static function EtudinatsCours($id_utilisateur)
     {
         $db = Database::getInstance()->getConnection();
-        $sql = "SELECT * FROM cours c join inscription i on c.id_cour = i.id_cour JOIN etudiants e on e.id_etudiant = i.id_etudiant WHERE e.id_utilisateur = :id_utilisateur";
+        $sql = "SELECT * FROM cours c join inscription i on 
+        c.id_cour = i.id_cour JOIN etudiants e on 
+        e.id_etudiant = i.id_etudiant WHERE 
+        e.id_utilisateur = :id_utilisateur";
+
         $stmt = $db->prepare($sql);
         $stmt->bindValue(':id_utilisateur', $id_utilisateur);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    public static function getAllCours()
+    {
+        $db = Database::getInstance()->getConnection();
+        $sql = "SELECT * FROM cours co join categories ca on 
+        co.category_id = ca.id_category join enseignants en on
+        co.id_enseignant = en.id_enseignant join utilisateurs u 
+        on en.id_utilisateur = u.id_utilisateur";
+        $stmt = $db->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll();
     }

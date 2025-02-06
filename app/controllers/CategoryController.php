@@ -19,9 +19,7 @@ class CategoryController extends Controller
         $categoryObj = [];
 
         foreach ($categories as $cat) {
-
             $categoryObj[] = new Category($cat['id_category'], $cat['category_name']);
-
         }
         $this->view('categoriesList', [
             'categoryObj' => $categoryObj,

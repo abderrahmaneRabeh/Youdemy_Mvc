@@ -33,11 +33,11 @@
             <h3><i class="fa fa-book-reader mr-2"></i>YouDemy</h3>
         </div>
         <div class="sidebar-menu">
-            <a href="./StatistiquesPanel.php" class="menu-item"><i class="fas fa-tachometer-alt"></i>Dashboard</a>
-            <a href="./UtilisateursPanel.php" class="menu-item active"><i class="fas fa-users"></i>Utilisateurs</a>
-            <a href="./CoursesPanel.php" class="menu-item"><i class="fas fa-graduation-cap"></i>Cours</a>
-            <a href="./TagsPanel.php" class="menu-item"><i class="fas fa-tags"></i>Tags</a>
-            <a href="./CategoryPanel.php" class="menu-item"><i class="fas fa-list"></i>Categories</a>
+            <a href="index.php?url=statistiques" class="menu-item"><i class="fas fa-tachometer-alt"></i>Dashboard</a>
+            <a href="./index.php?url=userPanel" class="menu-item active"><i class="fas fa-users"></i>Utilisateurs</a>
+            <a href="./index.php?url=coursAdminPanel" class="menu-item"><i class="fas fa-graduation-cap"></i>Cours</a>
+            <a href="./index.php?url=tagsPanel" class="menu-item"><i class="fas fa-tags"></i>Tags</a>
+            <a href="./index.php?url=categoriesPanel" class="menu-item"><i class="fas fa-list"></i>Categories</a>
         </div>
     </div>
 
@@ -56,9 +56,9 @@
                 <?php endif; ?>
             </div>
             <a href="./index.php?url=logout"
-                style="text-decoration: none;color: black;font-weight: bold;border-radius: 5px;padding: 5px 10px;background-color:rgb(1, 86, 255);"><i
-                    class="
-                fas fa-sign-out-alt" style="color: white;"></i></a>
+                style="text-decoration: none;color: black;font-weight: bold;border-radius: 5px;padding: 5px 10px;background-color:rgb(1, 86, 255);">
+                <i class="fas fa-sign-out-alt" style="color: white;"></i>
+            </a>
         </div>
 
         <!-- Recent Activity -->
