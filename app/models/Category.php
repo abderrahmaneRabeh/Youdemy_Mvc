@@ -48,6 +48,47 @@ class Category
         return $stmt->fetchAll();
     }
 
+    public static function addCategory($category_name)
+    {
+        $db = Database::getInstance()->getConnection();
+        $sql = "INSERT INTO categories (category_name) VALUES (:category_name)";
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':category_name', $category_name);
+        $stmt->execute();
+        return $stmt->rowCount();
+    }
+
+    public static function deleteCategory($id_category)
+    {
+        $db = Database::getInstance()->getConnection();
+        $sql = "DELETE FROM categories WHERE id_category = :id_category";
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':id_category', $id_category);
+        $stmt->execute();
+        return $stmt->rowCount();
+    }
+
+    public static function GetCategoryById($id_category)
+    {
+        $db = Database::getInstance()->getConnection();
+        $sql = "SELECT * FROM categories WHERE id_category = :id_category";
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':id_category', $id_category);
+        $stmt->execute();
+        return $stmt->fetch();
+    }
+
+    public static function updateCategory($id_category, $category_name)
+    {
+        $db = Database::getInstance()->getConnection();
+        $sql = "UPDATE categories SET category_name = :category_name WHERE id_category = :id_category";
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':id_category', $id_category);
+        $stmt->bindValue(':category_name', $category_name);
+        $stmt->execute();
+        return $stmt->rowCount();
+    }
+
     public function __get($attr)
     {
         return $this->$attr;

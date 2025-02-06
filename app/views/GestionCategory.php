@@ -65,7 +65,7 @@
         <div class="row">
             <div class="col-md-12 d-flex justify-content-between align-items-center mb-4">
                 <span class="text-muted">Gérez vos Categories efficacement</span>
-                <a class="btn btn-primary text-white" href="../pages/AjouterCategory__form.php">
+                <a class="btn btn-primary text-white" href="./index.php?url=AddCategory">
                     <i class="fas fa-plus-circle"></i> Ajouter un nouveau category
                 </a>
             </div>
@@ -101,11 +101,11 @@
                                 <td><?php echo $Category->id_category; ?></td>
                                 <td><?php echo $Category->category_name; ?></td>
                                 <td class="text-center">
-                                    <a href="../actions/SupprimerCategory_action.php?id=<?php echo $Category->id_category; ?>"
+                                    <a href="./index.php?url=SupprimerCategory&id=<?php echo $Category->id_category; ?>"
                                         class="btn btn-danger btn-sm"
                                         onclick="return confirm('Voulez-vous vraiment supprimer ce cours ?')"><i
                                             class="fas fa-trash"></i></a>
-                                    <a href="../pages/ModifierCategory__form.php?id=<?php echo $Category->id_category; ?>"
+                                    <a href="./index.php?url=EditCategory&id=<?php echo $Category->id_category; ?>"
                                         class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
                                 </td>
                             </tr>

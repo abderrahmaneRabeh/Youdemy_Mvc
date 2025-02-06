@@ -18,11 +18,20 @@ Router::add('processLogin', 'AuthController', 'processLogin');
 // Categories
 Router::add('categoryList', 'CategoryController', 'index');
 
+Router::add('AddCategory', 'CategoryController', 'AddCategory');
+Router::add('processAjouterCategory', 'CategoryController', 'processAjouterCategory');
+
+Router::add('SupprimerCategory', 'CategoryController', 'SupprimerCategory');
+
+Router::add('EditCategory', 'CategoryController', 'EditCategory');
+Router::add('processEditCategory', 'CategoryController', 'processEditCategory');
+
 // Courses
 Router::add('coursesList', 'CourseController', 'index');
 Router::add('FetchCourses', 'CourseController', 'fetchCourses');
 Router::add('courseDetail', 'CourseController', 'CourseDetails');
 Router::add('myCourses', 'CourseController', 'MyCourses');
+
 
 // Tags
 Router::add('tagList', 'TagController', 'index');
