@@ -7,6 +7,7 @@ use Models\Enseignant;
 use Models\Etudiant;
 use Models\Category;
 use Models\Course;
+use Models\Statistique;
 use Models\Tag;
 
 class DashboardController extends Controller
@@ -20,11 +21,11 @@ class DashboardController extends Controller
         $utilisateursObjEtudiant = [];
 
         foreach ($enseignants as $enseignant) {
-            $utilisateursObjEnseignant[] = new Enseignant($enseignant['nom'], $enseignant['email'], $enseignant['pw'], $enseignant['is_active'], $enseignant['id_enseignant']);
+            $utilisateursObjEnseignant[] = new Enseignant($enseignant['nom'], $enseignant['email'], $enseignant['pw'], $enseignant['is_active'], $enseignant['id_utilisateur']);
         }
 
         foreach ($etudiants as $etudiant) {
-            $utilisateursObjEtudiant[] = new Etudiant($etudiant['nom'], $etudiant['email'], $etudiant['pw'], $etudiant['is_baned'], $etudiant['id_etudiant']);
+            $utilisateursObjEtudiant[] = new Etudiant($etudiant['nom'], $etudiant['email'], $etudiant['pw'], $etudiant['is_baned'], $etudiant['id_utilisateur']);
         }
 
 
@@ -36,7 +37,23 @@ class DashboardController extends Controller
 
     public function Statistiques()
     {
-        $this->view('StatistiquesGlobal');
+        $statistiqueModel = new Statistique();
+        $TotalCourses = $statistiqueModel->Nombre_total_cours();
+        $totalUtilisateurs = $statistiqueModel->Nombre_total_utilisateurs();
+        $totalInscriptions = $statistiqueModel->Nombre_total_Inscriptions();
+        $totalCategories = $statistiqueModel->Nombre_total_Categories();
+        $totalTags = $statistiqueModel->Nombre_total_Tags();
+        $CoursPlusEtudinat = $statistiqueModel->CoursPlusEtudinat();
+
+
+        $this->view('StatistiquesGlobal', [
+            'TotalCourses' => $TotalCourses,
+            'totalUtilisateurs' => $totalUtilisateurs,
+            'totalInscriptions' => $totalInscriptions,
+            'totalCategories' => $totalCategories,
+            'totalTags' => $totalTags,
+            'CoursPlusEtudinat' => $CoursPlusEtudinat
+        ]);
     }
 
     public function GestionCoursAdmin()

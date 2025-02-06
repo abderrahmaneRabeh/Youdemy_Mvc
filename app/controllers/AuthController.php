@@ -65,11 +65,11 @@ class AuthController extends Controller
                 $enseignant = new Enseignant($nom, $email, $password, 0, $userId);
                 $id_enseignant = $enseignant->save();
 
-                $_SESSION['nom'] = $nom;
-                $_SESSION['id_enseignant'] = $id_enseignant;
-                $_SESSION['role'] = $role;
+                // $_SESSION['nom'] = $nom;
+                // $_SESSION['id_enseignant'] = $id_enseignant;
+                // $_SESSION['role'] = $role;
 
-                header('Location: ./index.php?url=home');
+                header('Location: ./index.php?url=login');
                 exit();
             }
 
@@ -113,10 +113,18 @@ class AuthController extends Controller
 
                 $enseignant = Enseignant::findEnseignantById($utilisateur['id_utilisateur']);
 
+                $is_active = $enseignant['is_active'];
+
+                if ($is_active == 0) {
+                    $_SESSION['error_enseignant'] = "Votre compte enseignant est desactive.";
+                    header('Location: ./index.php?url=login');
+                    exit();
+                }
+
                 $_SESSION['nom'] = $utilisateur['nom'];
                 $_SESSION['id_utilisateur'] = $utilisateur['id_utilisateur'];
                 $_SESSION['role'] = $utilisateur['role'];
-                $_SESSION['id_enseignant'] = $enseignant;
+                $_SESSION['id_enseignant'] = $enseignant['id_enseignant'];
 
                 header('Location: ./index.php?url=home');
                 exit();

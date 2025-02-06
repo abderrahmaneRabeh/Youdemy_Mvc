@@ -96,7 +96,8 @@
                                     <td><?= $utilisateur->email ?></td>
                                     <td><?= $utilisateur->role ?></td>
                                     <td class="text-center">
-                                        <form action="../actions/activerEnseignant.php" method="post">
+                                        <form action="./index.php?url=ActiveEnseignant&id=<?= $utilisateur->id_utilisateur ?>"
+                                            method="post">
                                             <input type="hidden" name="id" value="<?= $utilisateur->id_utilisateur ?>">
                                             <?php if ($utilisateur->is_active != 0): ?>
                                                 <i class="fas fa-check-circle text-success" style="margin-left: 5px;"></i>
@@ -110,7 +111,7 @@
                                         <?php endif; ?>
                                     </td>
                                     <td class="text-center">
-                                        <a href="../actions/DeleteEnseignant.php?utilisateurId=<?= $utilisateur->id_utilisateur ?>"
+                                        <a href="./index.php?url=deleteEnseignant&id=<?= $utilisateur->id_utilisateur ?>"
                                             onclick="return confirm('Etes-vous s ur de vouloir supprimer cet utilisateur ?')"
                                             class="btn btn-primary">
                                             <i class="fas fa-trash-alt"></i>
@@ -152,7 +153,6 @@
                                 unset($_SESSION['error_etudiant']); ?>
                             </div>
                         <?php endif; ?>
-
                         <?php foreach ($utilisateursObjEtudiant as $utilisateur): ?>
 
                             <?php if ($utilisateur->role === 'etudiant'): ?>
@@ -162,15 +162,15 @@
                                     <td><?= $utilisateur->role ?></td>
                                     <td class="text-center">
                                         <?php if ($utilisateur->is_banned == 1): ?>
-                                            <a href="../actions/banUEtudiant.php?id=<?= $utilisateur->id_utilisateur ?>&action=0"
+                                            <a href="./index.php?url=banEtudiant&id=<?= $utilisateur->id_utilisateur ?>&action=0"
                                                 class="btn btn-success btn-sm" style="display: inline;">Activate</a>
                                         <?php else: ?>
-                                            <a href="../actions/banUEtudiant.php?id=<?= $utilisateur->id_utilisateur ?>&action=1"
+                                            <a href="./index.php?url=banEtudiant&id=<?= $utilisateur->id_utilisateur ?>&action=1"
                                                 class="btn btn-danger btn-sm" style="display: inline;">Ban</a>
                                         <?php endif; ?>
                                     </td>
                                     <td class="text-center">
-                                        <a href="../actions/DeleteEtudiant.php?utilisateurId=<?= $utilisateur->id_utilisateur ?>"
+                                        <a href="./index.php?url=deleteEtudiant&id=<?= $utilisateur->id_utilisateur ?>"
                                             onclick="return confirm('Etes-vous s ur de vouloir supprimer cet utilisateur ?')"
                                             class="btn btn-primary">
                                             <i class="fas fa-trash-alt"></i>

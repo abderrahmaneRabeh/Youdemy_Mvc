@@ -33,6 +33,18 @@ Router::add('statistiques', 'DashboardController', 'Statistiques');
 Router::add('coursAdminPanel', 'DashboardController', 'GestionCoursAdmin');
 Router::add('tagsPanel', 'DashboardController', 'GestionTags');
 Router::add('categoriesPanel', 'DashboardController', 'GestionCategories');
+
+// Delete Routes
+Router::add('deleteEtudiant', 'UserController', method: 'DeleteEtudiant');
+Router::add('deleteEnseignant', 'UserController', method: 'DeleteEnseignant');
+
+
+// active enseignant
+Router::add('ActiveEnseignant', 'UserController', method: 'ActiveEnseignant');
+
+// banner etudiant
+Router::add('banEtudiant', 'UserController', method: 'BanEtudiant');
+
 // Routing
 $url = $_GET['url'] ?? 'home';
 Router::dispatch($url);

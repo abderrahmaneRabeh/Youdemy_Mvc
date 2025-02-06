@@ -50,9 +50,9 @@ class Utilisateur
     public static function findEnseignantById($id_utilisateur)
     {
         $db = Database::getInstance()->getConnection();
-        $stmt = $db->prepare("SELECT id_enseignant FROM enseignants WHERE id_utilisateur = :id_utilisateur");
+        $stmt = $db->prepare("SELECT * FROM enseignants WHERE id_utilisateur = :id_utilisateur");
         $stmt->execute([':id_utilisateur' => $id_utilisateur]);
-        return $stmt->fetch()['id_enseignant'];
+        return $stmt->fetch();
     }
 
     public static function findEtudiantById($id_utilisateur)
@@ -61,6 +61,37 @@ class Utilisateur
         $stmt = $db->prepare("SELECT id_etudiant FROM etudiants WHERE id_utilisateur = :id_utilisateur");
         $stmt->execute([':id_utilisateur' => $id_utilisateur]);
         return $stmt->fetch()['id_etudiant'];
+    }
+
+    public static function DeleteUser($id_utilisateur)
+    {
+        $db = Database::getInstance()->getConnection();
+        $sql = "DELETE FROM utilisateurs WHERE id_utilisateur = :id_utilisateur";
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':id_utilisateur', $id_utilisateur);
+        $stmt->execute();
+        return $stmt->rowCount();
+    }
+
+    public static function ActiveEnseignant($id_utilisateur)
+    {
+        $db = Database::getInstance()->getConnection();
+        $sql = "UPDATE enseignants SET is_active = true WHERE id_utilisateur = :id_utilisateur";
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':id_utilisateur', $id_utilisateur);
+        $stmt->execute();
+        return $stmt->rowCount();
+    }
+
+    public static function BanActiveEtudiant($id_utilisateur, $is_baned)
+    {
+        $db = Database::getInstance()->getConnection();
+        $sql = "UPDATE etudiants SET is_baned = :is_baned WHERE id_utilisateur = :id_utilisateur";
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':id_utilisateur', $id_utilisateur);
+        $stmt->bindValue(':is_baned', $is_baned);
+        $stmt->execute();
+        return $stmt->rowCount();
     }
 
     public function __get($attr)
