@@ -6,6 +6,8 @@ use Core\Controller;
 use Models\Course;
 use Models\Tag;
 
+session_start();
+
 class CourseController extends Controller
 {
     public function index()
@@ -68,6 +70,7 @@ class CourseController extends Controller
 
         $course = Course::CourseDetails($id);
         $courseTags = Course::CoursTag($id);
+        $isInscription = Course::getUserInscriptions($_SESSION['id_etudiant'], $id);
 
         $courseObj = new Course(
             $course['titre_cour'],
@@ -83,7 +86,15 @@ class CourseController extends Controller
 
         $this->view('CourseDetail', [
             'course' => $courseObj,
-            'courseTags' => $courseTags
+            'courseTags' => $courseTags,
+            'isInscription' => $isInscription
         ]);
     }
+
+    public function MyCourses()
+    {
+        $courses = Course::EtudinatsCours($_SESSION['id_etudiant']);
+    }
+
+
 }

@@ -1,11 +1,3 @@
-<?php session_start();
-
-echo "<pre>";
-print_r($course);
-echo "</pre>";
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -102,24 +94,30 @@ echo "</pre>";
             </button>
             <div class="collapse navbar-collapse justify-content-between px-lg-3" id="navbarCollapse">
                 <div class="navbar-nav mx-auto py-0">
-                    <a href="../index.php" class="nav-item nav-link ">Accueil</a>
-                    <a href="./courses.php" class="nav-item nav-link active">Cours</a>
-                    <a href="./ListCategory.php" class="nav-item nav-link">Categories</a>
+                    <a href="./index.php?url=home" class="nav-item nav-link active">Accueil</a>
+                    <a href="./index.php?url=coursesList" class="nav-item nav-link">Cours</a>
+                    <a href="./index.php?url=categoryList" class="nav-item nav-link">Categories</a>
                 </div>
-                <?php if (isset($_SESSION['utilisateur'])): ?>
+                <?php if (isset($_SESSION['role'])): ?>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle"
                             style="text-decoration: none;color: black;font-weight: bold;border-radius: 5px;padding: 5px 10px;background-color: #f5f5f5;"
-                            data-toggle="dropdown"><?php echo $_SESSION['utilisateur']['nom']; ?></a>
-                        <div class="dropdown-menu m-0" style="border-radius: 5px;">
-                            <?php if ($_SESSION['utilisateur']['role'] == 'etudiant'): ?>
-                                <a href="./mesCours.php" class="dropdown-item">Mes Cours</a>
+                            data-toggle="dropdown">
+                            <?php if (isset($_SESSION['nom'])): ?>
+                                <?= $_SESSION['nom']; ?>
+                            <?php else: ?>
+                                user
                             <?php endif; ?>
-                            <a href="../actions/lougout.php" class="dropdown-item"><i class="fas fa-sign-out-alt"></i></a>
+                        </a>
+                        <div class="dropdown-menu m-0" style="border-radius: 5px;">
+                            <?php if ($_SESSION['role'] == 'etudiant'): ?>
+                                <a href="./pages/mesCours.php" class="dropdown-item">Mes Cours</a>
+                            <?php endif; ?>
+                            <a href="./index.php?url=logout" class="dropdown-item"><i class="fas fa-sign-out-alt"></i></a>
                         </div>
                     </div>
                 <?php else: ?>
-                    <a href="./seConnecter.php" class="btn btn-primary py-2 px-4 d-none d-lg-block">Se connecter</a>
+                    <a href="./index.php?url=login" class="btn btn-primary py-2 px-4 d-none d-lg-block">Se connecter</a>
                 <?php endif; ?>
             </div>
         </nav>

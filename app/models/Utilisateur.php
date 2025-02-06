@@ -47,6 +47,22 @@ class Utilisateur
         return $stmt->fetch();
     }
 
+    public static function findEnseignantById($id_utilisateur)
+    {
+        $db = Database::getInstance()->getConnection();
+        $stmt = $db->prepare("SELECT id_enseignant FROM enseignants WHERE id_utilisateur = :id_utilisateur");
+        $stmt->execute([':id_utilisateur' => $id_utilisateur]);
+        return $stmt->fetch()['id_enseignant'];
+    }
+
+    public static function findEtudiantById($id_utilisateur)
+    {
+        $db = Database::getInstance()->getConnection();
+        $stmt = $db->prepare("SELECT id_etudiant FROM etudiants WHERE id_utilisateur = :id_utilisateur");
+        $stmt->execute([':id_utilisateur' => $id_utilisateur]);
+        return $stmt->fetch()['id_etudiant'];
+    }
+
     public function __get($attr)
     {
         return $this->$attr;

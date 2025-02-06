@@ -91,8 +91,6 @@ class AuthController extends Controller
                 header('Location: ./index.php?url=login');
                 exit();
             }
-            // echo $utilisateur['pw'] . "<br>";
-            // echo $password;
 
             if (!password_verify(trim($password), trim($utilisateur['pw']))) {
                 $_SESSION['error_password'] = "Le mot de passe est incorrect.";
@@ -101,15 +99,25 @@ class AuthController extends Controller
             }
 
             if ($utilisateur['role'] == 'etudiant') {
+
+                $etudiant = Etudiant::findEtudiantById($utilisateur['id_utilisateur']);
+
                 $_SESSION['nom'] = $utilisateur['nom'];
-                $_SESSION['id_etudiant'] = $utilisateur['id_utilisateur'];
+                $_SESSION['id_utilisateur'] = $utilisateur['id_utilisateur'];
                 $_SESSION['role'] = $utilisateur['role'];
+                $_SESSION['id_etudiant'] = $etudiant;
+
                 header('Location: ./index.php?url=home');
                 exit();
             } elseif ($utilisateur['role'] == 'enseignant') {
+
+                $enseignant = Enseignant::findEnseignantById($utilisateur['id_utilisateur']);
+
                 $_SESSION['nom'] = $utilisateur['nom'];
-                $_SESSION['id_enseignant'] = $utilisateur['id_utilisateur'];
+                $_SESSION['id_utilisateur'] = $utilisateur['id_utilisateur'];
                 $_SESSION['role'] = $utilisateur['role'];
+                $_SESSION['id_enseignant'] = $enseignant;
+
                 header('Location: ./index.php?url=home');
                 exit();
             }

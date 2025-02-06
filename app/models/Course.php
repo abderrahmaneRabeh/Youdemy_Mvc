@@ -121,6 +121,27 @@ class Course
         return $stmt->fetchAll();
     }
 
+    public static function getUserInscriptions($id_etudiant, $id_cour)
+    {
+        $db = Database::getInstance()->getConnection();
+        $sql = "SELECT * FROM inscription WHERE id_etudiant = :id_etudiant and id_cour = :id_cour";
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':id_etudiant', $id_etudiant);
+        $stmt->bindValue(':id_cour', $id_cour);
+        $stmt->execute();
+        return $stmt->rowCount();
+    }
+
+    public static function EtudinatsCours($id_utilisateur)
+    {
+        $db = Database::getInstance()->getConnection();
+        $sql = "SELECT * FROM cours c join inscription i on c.id_cour = i.id_cour JOIN etudiants e on e.id_etudiant = i.id_etudiant WHERE e.id_utilisateur = :id_utilisateur";
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':id_utilisateur', $id_utilisateur);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
 
     public function __get($attr)
     {
