@@ -38,6 +38,14 @@ Router::add('DeleteCourse', 'CourseController', 'DeleteCourse');
 // Tags
 Router::add('tagList', 'TagController', 'index');
 
+Router::add('AddTag', 'TagController', 'AddTag');
+Router::add('processAjouterTag', 'TagController', 'processAjouterTag');
+
+Router::add('SupprimerTag', 'TagController', 'SupprimerTag');
+
+Router::add('EditTag', 'TagController', 'EditTag');
+Router::add('processEditTag', 'TagController', 'processEditTag');
+
 // Dasgboard
 Router::add('userPanel', 'DashboardController', 'Utilisateurs');
 Router::add('statistiques', 'DashboardController', 'Statistiques');

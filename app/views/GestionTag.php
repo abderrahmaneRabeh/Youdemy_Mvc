@@ -65,7 +65,7 @@
         <div class="row">
             <div class="col-md-12 d-flex justify-content-between align-items-center mb-4">
                 <span class="text-muted">Gérez vos Tags efficacement</span>
-                <a class="btn btn-primary text-white" href="../pages/AjouterTag__form.php">
+                <a class="btn btn-primary text-white" href="./index.php?url=AddTag">
                     <i class="fas fa-plus-circle"></i> Ajouter un nouveau Tag
                 </a>
             </div>
@@ -101,11 +101,11 @@
                                 <td><?php echo $tag->id_tag; ?></td>
                                 <td><?php echo $tag->tag_name; ?></td>
                                 <td class="text-center">
-                                    <a href="../actions/SupprimerTag_action.php?id=<?php echo $tag->id_tag; ?>"
+                                    <a href="./index.php?url=SupprimerTag&id=<?php echo $tag->id_tag; ?>"
                                         class="btn btn-danger btn-sm"
                                         onclick="return confirm('Voulez-vous vraiment supprimer ce cours ?')"><i
                                             class="fas fa-trash"></i></a>
-                                    <a href="../pages/ModifierTag__form.php?id=<?php echo $tag->id_tag; ?>"
+                                    <a href="./index.php?url=EditTag&id=<?php echo $tag->id_tag; ?>"
                                         class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
                                 </td>
                             </tr>

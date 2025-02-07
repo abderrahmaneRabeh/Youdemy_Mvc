@@ -81,9 +81,10 @@ class CategoryController extends Controller
 
             $categoryObj = new Category($category['id_category'], $category['category_name']);
             $this->view('EditCategory', ['categoryObj' => $categoryObj]);
+        } else {
+            $_SESSION['error'] = "Une erreur s'est produite lors de la modification de la catégorie";
+            header('Location: ./index.php?url=categoriesPanel');
         }
-
-        $this->view('EditCategory');
     }
 
     public function processEditCategory()
