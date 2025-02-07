@@ -101,7 +101,7 @@
                                 <td><?= $inscription['titre_cour'] ?></td>
                                 <td><?= $inscription['first_insc_date'] ?></td>
                                 <td>
-                                    <a href="?id_cour=<?= $inscription['id_cour'] ?>">
+                                    <a href="index.php?url=StatistiquesEnseignant&id_cour=<?= $inscription['id_cour'] ?>">
                                         <?= $inscription['total_etudiants'] ?>
                                     </a>
                                 </td>
@@ -120,9 +120,9 @@
                             <?= $EtudinatCourseInscrit[0]['titre_cour'] ?>
                         </span>
                     </h4>
-                    <button type="button" class="btn btn-primary" style="margin-left: 10px;"
-                        onclick="window.location.href = window.location.href.split('?')[0]"><i class="fa fa-eye-slash"></i>
-                    </button>
+                    <a class="btn btn-primary" style="margin-left: 10px;color: white;"
+                        href="index.php?url=StatistiquesEnseignant"><i class="fa fa-eye-slash"></i>
+                    </a>
                 </div>
                 <div class="table-responsive">
                     <table class="table">

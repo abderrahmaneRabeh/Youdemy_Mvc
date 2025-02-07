@@ -5,7 +5,8 @@
             "Controllers\\": "app/controllers/",
             "Models\\": "app/models/",
             "Views\\": "app/views/",
-            "Core\\": "core/"
+            "Core\\": "core/",
+            "Helpers\\": "helpers/"
         }
     },
     "authors": [

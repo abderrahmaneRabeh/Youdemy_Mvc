@@ -98,9 +98,10 @@ class CourseController extends Controller
 
     public function MyCourses()
     {
-        $courses = Course::EtudinatsCours($_SESSION['id_utilisateur']);
+
+        $courses = Course::MyCourses($_SESSION['id_utilisateur']);
         $this->view('MyCours', [
-            'MyCours' => $courses
+            'Mycourses' => $courses
         ]);
     }
 

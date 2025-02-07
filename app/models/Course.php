@@ -230,6 +230,27 @@ class Course
         return $stmt->fetchColumn();
     }
 
+    public static function MyCourses($id_utilisateur)
+    {
+        $db = Database::getInstance()->getConnection();
+        $sql = "SELECT * FROM cours c join inscription i on c.id_cour = i.id_cour JOIN etudiants e on e.id_etudiant = i.id_etudiant WHERE e.id_utilisateur = :id_utilisateur";
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':id_utilisateur', $id_utilisateur);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    public static function countTotalCours()
+    {
+        $db = Database::getInstance()->getConnection();
+        $sql = "SELECT COUNT(*) as total_cours FROM cours";
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetch()['total_cours'];
+    }
+
+
+
     public function __get($attr)
     {
         return $this->$attr;

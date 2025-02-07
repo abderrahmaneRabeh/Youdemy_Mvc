@@ -70,6 +70,10 @@ Router::add('ActiveEnseignant', 'UserController', method: 'ActiveEnseignant');
 // banner etudiant
 Router::add('banEtudiant', 'UserController', method: 'BanEtudiant');
 
+// Inscription
+
+Router::add('addInscription', 'InscriptionController', method: 'AddNewInscription');
+
 // Routing
 $url = $_GET['url'] ?? 'home';
 Router::dispatch($url);

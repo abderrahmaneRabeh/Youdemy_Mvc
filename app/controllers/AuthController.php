@@ -57,6 +57,7 @@ class AuthController extends Controller
                 $id_etudiant = $etudiant->save();
                 $_SESSION['nom'] = $nom;
                 $_SESSION['id_etudiant'] = $id_etudiant;
+                $_SESSION['id_utilisateur'] = $userId;
                 $_SESSION['role'] = $role;
                 header('Location: ./index.php?url=home');
                 exit();

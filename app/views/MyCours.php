@@ -191,7 +191,7 @@
                         <div class="col-lg-4 col-md-6">
                             <div class="course-card shadow">
                                 <div class="position-relative">
-                                    <img class="img-fluid" src="<?= $course['imgPrincipale_cours'] ?>" alt="Course Image">
+                                    <img class="img-fluid" src="<?= $course['imgprincipale_cours'] ?>" alt="Course Image">
                                     <?php if ($course['is_video'] == 1): ?>
                                         <div class="course-status status-in-progress">En cours</div>
                                     <?php endif; ?>

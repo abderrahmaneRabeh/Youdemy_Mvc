@@ -9,6 +9,7 @@ use Models\Category;
 use Models\Course;
 use Models\Statistique;
 use Models\Tag;
+use Models\Inscription;
 
 session_start();
 
@@ -150,6 +151,22 @@ class DashboardController extends Controller
 
     public function StatistiquesEnseignant()
     {
-        $this->view('StatistiquesEnseignant');
+        if (isset($_GET['id_cour'])) {
+            $id_cour = $_GET['id_cour'];
+
+            $CourseEtudiantInscite = Inscription::CourseEtudiantInscite($id_cour);
+        } else {
+            $CourseEtudiantInscite = [];
+        }
+
+        $countTotalEtudiantsInscrits = Inscription::countTotalEtudiantsInscrits();
+        $enseignantInscriptions = Inscription::getEnseignantInscriptions($_SESSION['id_enseignant']);
+        $countTotalCours = Course::countTotalCours();
+        $this->view('StatistiquesEnseignant', [
+            'countTotalEtudiantsInscrits' => $countTotalEtudiantsInscrits,
+            'countTotalCours' => $countTotalCours,
+            'enseignantInscriptions' => $enseignantInscriptions,
+            'EtudinatCourseInscrit' => $CourseEtudiantInscite
+        ]);
     }
 }
