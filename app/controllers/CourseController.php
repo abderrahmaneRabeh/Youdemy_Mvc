@@ -98,27 +98,35 @@ class CourseController extends Controller
     public function MyCourses()
     {
         $courses = Course::EtudinatsCours($_SESSION['id_utilisateur']);
-
-        // $listCoursObj = [];
-
-        // foreach ($courses as $course) {
-        //     $listCoursObj[] = new Course(
-        //         $course['titre_cour'],
-        //         $course['imgprincipale_cours'],
-        //         $course['imgsecondaire_cours'],
-        //         $course['description_cours'],
-        //         $course['contenu_cours'],
-        //         $course['category_name'],
-        //         $course['nom'],
-        //         $course['is_video'],
-        //         $course['id_cour']
-        //     );
-        // }
-
         $this->view('MyCours', [
             'MyCours' => $courses
         ]);
     }
 
+    public function DeleteCourse()
+    {
+
+        if ($_SESSION['role'] != 'enseignant') {
+            $redirect = './index.php?url=coursAdminPanel';
+        } else {
+            $redirect = './index.php?url=coursEnseignantPanel';
+        }
+
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+            $isDeleted = Course::deleteCourse($id);
+
+            if ($isDeleted) {
+                $_SESSION['success'] = "Le cours a été supprimé avec succès.";
+                header('Location: ' . $redirect);
+            } else {
+                $_SESSION['error'] = "Le cours n'a pas pu être supprimé.";
+                header('Location: ' . $redirect);
+            }
+        } else {
+            $_SESSION['error'] = "Une erreur s'est produite lors de la suppression du cours.";
+            header('Location: ' . $redirect);
+        }
+    }
 
 }

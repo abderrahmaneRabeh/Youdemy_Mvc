@@ -96,7 +96,7 @@
                                 <td><?= $course->category_id; ?></td>
                                 <td><?= $course->id_enseignant; ?></td>
                                 <td class="text-center">
-                                    <a href="../actions/SupprimerCours_action.php?id=<?php echo $course->id_cour; ?>"
+                                    <a href="./index.php?url=DeleteCourse&id=<?php echo $course->id_cour; ?>"
                                         class="btn btn-danger btn-sm"
                                         onclick="return confirm('Voulez-vous vraiment supprimer ce cours ?')">
                                         <i class="fas fa-trash"></i>
