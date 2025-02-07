@@ -249,7 +249,34 @@ class Course
         return $stmt->fetch()['total_cours'];
     }
 
+    public static function TopTreeEnseignants()
+    {
+        $db = Database::getInstance()->getConnection();
+        $sql = "SELECT u.nom, COUNT(co.id_cour) as topTree 
+                FROM cours co 
+                JOIN enseignants en ON co.id_enseignant = en.id_enseignant 
+                JOIN utilisateurs u ON u.id_utilisateur = en.id_utilisateur 
+                GROUP BY u.nom, co.id_enseignant 
+                ORDER BY topTree DESC 
+                LIMIT 3;
+                ";
 
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    public static function CategoryCourses($id_category)
+    {
+        $db = Database::getInstance()->getConnection();
+        $sql = "SELECT * FROM cours c join enseignants e on c.id_enseignant = e.id_enseignant 
+                join utilisateurs u on e.id_utilisateur = u.id_utilisateur 
+                join categories ca on c.category_id = ca.id_category WHERE category_id = :id_category";
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':id_category', $id_category);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
 
     public function __get($attr)
     {

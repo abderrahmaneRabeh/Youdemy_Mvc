@@ -1,4 +1,3 @@
-<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -204,7 +203,7 @@
                 <?php foreach ($TopTreeEnseignants as $enseignant): ?>
                     <div class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
                         <span><?= $enseignant['nom'] ?></span>
-                        <span class="badge badge-primary badge-pill">Nombre de cours : <?= $enseignant['topTree'] ?></span>
+                        <span class="badge badge-primary badge-pill">Nombre de cours : <?= $enseignant['toptree'] ?></span>
                     </div>
                 <?php endforeach; ?>
             </div>
@@ -228,7 +227,10 @@
 
                             <tr>
                                 <td><?= $category['category_name'] ?></td>
-                                <td><a href="?category_id=<?= $category['id_category'] ?>"><?= $category['totalCour'] ?></a>
+                                <td>
+                                    <a href="index.php?url=statistiques&category_id=<?= $category['id_category'] ?>">
+                                        <?= $category['totalcour'] ?>
+                                    </a>
                                 </td>
                             </tr>
 
@@ -246,9 +248,9 @@
                             <?= $categoryCourses[0]['category_name'] ?>
                         </span>
                     </h4>
-                    <button type="button" class="btn btn-primary" style="margin-left: 10px;"
-                        onclick="window.location.href = window.location.href.split('?')[0]"><i class="fa fa-eye-slash"></i>
-                    </button>
+                    <a class="btn btn-primary" style="margin-left: 10px;color:white;" href="index.php?url=statistiques"><i
+                            class="fa fa-eye-slash"></i>
+                    </a>
                 </div>
                 <div class="table-responsive">
                     <table class="table">

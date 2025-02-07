@@ -48,6 +48,15 @@ class DashboardController extends Controller
         $totalTags = $statistiqueModel->Nombre_total_Tags();
         $CoursPlusEtudinat = $statistiqueModel->CoursPlusEtudinat();
 
+        $TopTreeEnseignants = Course::TopTreeEnseignants();
+        $repartitionParCategorie = Category::repartitionParCategorie();
+
+        if (isset($_GET['category_id'])) {
+            $categoryCourses = Course::CategoryCourses($_GET['category_id']);
+        } else {
+            $categoryCourses = [];
+        }
+
 
         $this->view('StatistiquesGlobal', [
             'TotalCourses' => $TotalCourses,
@@ -55,7 +64,10 @@ class DashboardController extends Controller
             'totalInscriptions' => $totalInscriptions,
             'totalCategories' => $totalCategories,
             'totalTags' => $totalTags,
-            'CoursPlusEtudinat' => $CoursPlusEtudinat
+            'CoursPlusEtudinat' => $CoursPlusEtudinat,
+            'TopTreeEnseignants' => $TopTreeEnseignants,
+            'repartitionParCategorie' => $repartitionParCategorie,
+            'categoryCourses' => $categoryCourses
         ]);
     }
 
@@ -112,12 +124,6 @@ class DashboardController extends Controller
         $this->view('GestionCategory', [
             'categoryObj' => $categoriesObj
         ]);
-    }
-
-
-    public function GestionInscription()
-    {
-        $this->view('GestionInscription');
     }
 
     public function GestionCoursEnseignant()

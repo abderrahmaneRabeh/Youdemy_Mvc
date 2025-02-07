@@ -37,9 +37,6 @@
             <a href="./index.php?url=GestionCoursEnseignant" class="menu-item active">
                 <i class="fas fa-graduation-cap"></i>Cours
             </a>
-            <a href="./index.php?url=GestionInscription" class="menu-item">
-                <i class="fas fa-list-ol"></i>Inscriptions
-            </a>
         </div>
     </div>
 

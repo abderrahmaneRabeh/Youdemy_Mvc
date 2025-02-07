@@ -89,6 +89,18 @@ class Category
         return $stmt->rowCount();
     }
 
+    public static function repartitionParCategorie()
+    {
+        $db = Database::getInstance()->getConnection();
+        $sql = "SELECT categories.id_category, categories.category_name, COUNT(cours.id_cour) AS totalCour 
+                FROM cours 
+                JOIN categories ON cours.category_id = categories.id_category 
+                GROUP BY categories.id_category, categories.category_name;
+                ";
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
     public function __get($attr)
     {
         return $this->$attr;
