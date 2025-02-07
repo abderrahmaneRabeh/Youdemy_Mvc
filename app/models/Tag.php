@@ -68,6 +68,16 @@ class Tag
 
     }
 
+    public static function AjouterCoursTags($tag, $id_cours)
+    {
+        $db = Database::getInstance()->getConnection();
+        $sql = "INSERT INTO cours_tags(id_cour, id_tag) VALUES (:id_cour, :id_tag)";
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':id_cour', $id_cours);
+        $stmt->bindValue(':id_tag', $tag);
+        $stmt->execute();
+        return $stmt->rowCount();
+    }
     public function __get($attr)
     {
         return $this->$attr;

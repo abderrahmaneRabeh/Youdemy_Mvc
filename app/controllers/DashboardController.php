@@ -121,7 +121,11 @@ class DashboardController extends Controller
 
     public function GestionCoursEnseignant()
     {
-        $courses = Course::EnseignantCourses($_SESSION['id_utilisateur']);
+        if (isset($_SESSION['id_utilisateur'])) {
+            $courses = Course::EnseignantCourses($_SESSION['id_utilisateur']);
+        } else {
+            $courses = [];
+        }
 
         $coursesObj = [];
 

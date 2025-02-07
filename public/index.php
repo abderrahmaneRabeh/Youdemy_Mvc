@@ -31,6 +31,9 @@ Router::add('FetchCourses', 'CourseController', 'fetchCourses');
 Router::add('courseDetail', 'CourseController', 'CourseDetails');
 Router::add('myCourses', 'CourseController', 'MyCourses');
 
+Router::add('AddCourse', 'CourseController', 'AddCourse');
+Router::add('processAjouterCours', 'CourseController', 'processAjouterCours');
+
 
 
 // Tags

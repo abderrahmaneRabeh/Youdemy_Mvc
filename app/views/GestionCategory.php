@@ -47,16 +47,16 @@
                 <i class="fas fa-bars"></i>
             </button>
             <div class="user-profile">
-                <?php if (isset($_SESSION['utilisateur'])): ?>
-                    <span><?php echo $_SESSION['utilisateur']['nom']; ?></span>
+                <?php if (isset($_SESSION['role'])): ?>
+                    <span><?php echo $_SESSION['nom']; ?></span>
                 <?php else: ?>
                     <span>Admin User</span>
                 <?php endif; ?>
             </div>
-            <a href="../actions/lougout.php"
-                style="text-decoration: none;color: black;font-weight: bold;border-radius: 5px;padding: 5px 10px;background-color:rgb(1, 86, 255);"><i
-                    class="
-                fas fa-sign-out-alt" style="color: white;"></i></a>
+            <a href="./index.php?url=logout"
+                style="text-decoration: none;color: black;font-weight: bold;border-radius: 5px;padding: 5px 10px;background-color:rgb(1, 86, 255);">
+                <i class="fas fa-sign-out-alt" style="color: white;"></i>
+            </a>
         </div>
 
         <!-- Stats Cards -->

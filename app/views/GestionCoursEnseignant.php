@@ -66,7 +66,7 @@
         <div class="row">
             <div class="col-md-12 d-flex justify-content-between align-items-center mb-4">
                 <span class="text-muted">Gérez vos cours efficacement</span>
-                <a class="btn btn-primary text-white" href="../pages/AjouterCours__form.php">
+                <a class="btn btn-primary text-white" href="./index.php?url=AddCourse">
                     <i class="fas fa-plus-circle"></i> Ajouter un nouveau cours
                 </a>
             </div>
