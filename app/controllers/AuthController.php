@@ -126,7 +126,7 @@ class AuthController extends Controller
                 $_SESSION['role'] = $utilisateur['role'];
                 $_SESSION['id_enseignant'] = $enseignant['id_enseignant'];
 
-                header('Location: ./index.php?url=home');
+                header('Location: ./index.php?url=StatistiquesEnseignant');
                 exit();
             } elseif ($utilisateur['role'] == 'administrateur') {
 

@@ -21,7 +21,6 @@ Router::add('categoryList', 'CategoryController', 'index');
 Router::add('AddCategory', 'CategoryController', 'AddCategory');
 Router::add('processAjouterCategory', 'CategoryController', 'processAjouterCategory');
 
-Router::add('SupprimerCategory', 'CategoryController', 'SupprimerCategory');
 
 Router::add('EditCategory', 'CategoryController', 'EditCategory');
 Router::add('processEditCategory', 'CategoryController', 'processEditCategory');
@@ -32,7 +31,6 @@ Router::add('FetchCourses', 'CourseController', 'fetchCourses');
 Router::add('courseDetail', 'CourseController', 'CourseDetails');
 Router::add('myCourses', 'CourseController', 'MyCourses');
 
-Router::add('DeleteCourse', 'CourseController', 'DeleteCourse');
 
 
 // Tags
@@ -41,7 +39,6 @@ Router::add('tagList', 'TagController', 'index');
 Router::add('AddTag', 'TagController', 'AddTag');
 Router::add('processAjouterTag', 'TagController', 'processAjouterTag');
 
-Router::add('SupprimerTag', 'TagController', 'SupprimerTag');
 
 Router::add('EditTag', 'TagController', 'EditTag');
 Router::add('processEditTag', 'TagController', 'processEditTag');
@@ -53,9 +50,15 @@ Router::add('coursAdminPanel', 'DashboardController', 'GestionCoursAdmin');
 Router::add('tagsPanel', 'DashboardController', 'GestionTags');
 Router::add('categoriesPanel', 'DashboardController', 'GestionCategories');
 
+Router::add('StatistiquesEnseignant', 'DashboardController', method: 'StatistiquesEnseignant');
+Router::add('GestionCoursEnseignant', 'DashboardController', method: 'GestionCoursEnseignant');
+Router::add('GestionInscription', 'DashboardController', method: 'GestionInscription');
 // Delete Routes
 Router::add('deleteEtudiant', 'UserController', method: 'DeleteEtudiant');
 Router::add('deleteEnseignant', 'UserController', method: 'DeleteEnseignant');
+Router::add('SupprimerTag', 'TagController', 'SupprimerTag');
+Router::add('DeleteCourse', 'CourseController', 'DeleteCourse');
+Router::add('SupprimerCategory', 'CategoryController', 'SupprimerCategory');
 
 
 // active enseignant

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>YouDemy - Admin Dashboard</title>
+    <title>YouDemy - Enseignant Dashboard</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
     <!-- Favicon -->
@@ -31,12 +31,15 @@
             <h3><i class="fa fa-book-reader mr-2"></i>YouDemy</h3>
         </div>
         <div class="sidebar-menu">
-            <a href="./index.php?url=statistiques" class="menu-item"><i class="fas fa-tachometer-alt"></i>Dashboard</a>
-            <a href="./index.php?url=userPanel" class="menu-item"><i class="fas fa-users"></i>Utilisateurs</a>
-            <a href="./index.php?url=coursAdminPanel" class="menu-item active"><i
-                    class="fas fa-graduation-cap"></i>Cours</a>
-            <a href="./index.php?url=tagsPanel" class="menu-item"><i class="fas fa-tags"></i>Tags</a>
-            <a href="./index.php?url=categoriesPanel" class="menu-item"><i class="fas fa-list"></i>Categories</a>
+            <a href="../index.php?url=StatistiquesEnseignant" class="menu-item">
+                <i class="fas fa-tachometer-alt"></i>Dashboard
+            </a>
+            <a href="./index.php?url=GestionCoursEnseignant" class="menu-item active">
+                <i class="fas fa-graduation-cap"></i>Cours
+            </a>
+            <a href="./index.php?url=GestionInscription" class="menu-item">
+                <i class="fas fa-list-ol"></i>Inscriptions
+            </a>
         </div>
     </div>
 
@@ -51,7 +54,7 @@
                 <?php if (isset($_SESSION['role'])): ?>
                     <span><?php echo $_SESSION['nom']; ?></span>
                 <?php else: ?>
-                    <span>Admin User</span>
+                    <span>Enseignant User</span>
                 <?php endif; ?>
             </div>
             <a href="./index.php?url=logout"
@@ -59,6 +62,17 @@
                 <i class="fas fa-sign-out-alt" style="color: white;"></i>
             </a>
         </div>
+        <!-- Stats Cards -->
+        <div class="row">
+            <div class="col-md-12 d-flex justify-content-between align-items-center mb-4">
+                <span class="text-muted">Gérez vos cours efficacement</span>
+                <a class="btn btn-primary text-white" href="../pages/AjouterCours__form.php">
+                    <i class="fas fa-plus-circle"></i> Ajouter un nouveau cours
+                </a>
+            </div>
+
+        </div>
+
         <!-- Recent Activity -->
         <?php if (isset($_SESSION['success'])): ?>
             <div class="alert alert-success" role="alert">
@@ -81,7 +95,6 @@
                             <th>Titre du cours</th>
                             <th>Description du cours</th>
                             <th>Category</th>
-                            <th>Enseignant</th>
                             <th class="text-center">Action</th>
                         </tr>
                     </thead>
@@ -92,13 +105,13 @@
                                 <td><?= $course->titre_cour; ?></td>
                                 <td><?= substr($course->description_cours, 0, 50) ?></td>
                                 <td><?= $course->category_id; ?></td>
-                                <td><?= $course->id_enseignant; ?></td>
                                 <td class="text-center">
                                     <a href="./index.php?url=DeleteCourse&id=<?php echo $course->id_cour; ?>"
                                         class="btn btn-danger btn-sm"
-                                        onclick="return confirm('Voulez-vous vraiment supprimer ce cours ?')">
-                                        <i class="fas fa-trash"></i>
-                                    </a>
+                                        onclick="return confirm('Voulez-vous vraiment supprimer ce cours ?')"><i
+                                            class="fas fa-trash"></i></a>
+                                    <a href="../pages/ModifierCours__form.php?id=<?php echo $course->id_cour; ?>"
+                                        class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

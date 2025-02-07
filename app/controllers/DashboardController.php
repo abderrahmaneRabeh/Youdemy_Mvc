@@ -10,6 +10,8 @@ use Models\Course;
 use Models\Statistique;
 use Models\Tag;
 
+session_start();
+
 class DashboardController extends Controller
 {
     public function Utilisateurs()
@@ -109,5 +111,41 @@ class DashboardController extends Controller
         $this->view('GestionCategory', [
             'categoryObj' => $categoriesObj
         ]);
+    }
+
+
+    public function GestionInscription()
+    {
+        $this->view('GestionInscription');
+    }
+
+    public function GestionCoursEnseignant()
+    {
+        $courses = Course::EnseignantCourses($_SESSION['id_utilisateur']);
+
+        $coursesObj = [];
+
+        foreach ($courses as $course) {
+            $id_cours = $course['id_cour'];
+            $title = $course['titre_cour'];
+            $imgPrincipale_cours = $course['imgprincipale_cours'];
+            $imgSecondaire_cours = $course['imgsecondaire_cours'];
+            $contenu_cours = $course['contenu_cours'];
+            $description = $course['description_cours'];
+            $category_id = $course['category_name'];
+            $id_enseignant = $course['nom'];
+            $is_video = $course['is_video'];
+
+            $coursesObj[] = new Course($title, $imgPrincipale_cours, $imgSecondaire_cours, $description, $contenu_cours, $category_id, $id_enseignant, $is_video, $id_cours);
+        }
+
+        $this->view('GestionCoursEnseignant', [
+            'coursesObj' => $coursesObj
+        ]);
+    }
+
+    public function StatistiquesEnseignant()
+    {
+        $this->view('StatistiquesEnseignant');
     }
 }

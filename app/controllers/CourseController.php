@@ -109,7 +109,7 @@ class CourseController extends Controller
         if ($_SESSION['role'] != 'enseignant') {
             $redirect = './index.php?url=coursAdminPanel';
         } else {
-            $redirect = './index.php?url=coursEnseignantPanel';
+            $redirect = './index.php?url=GestionCoursEnseignant';
         }
 
         if (isset($_GET['id'])) {

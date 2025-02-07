@@ -183,6 +183,16 @@ class Course
         return $stmt->rowCount();
     }
 
+    public static function EnseignantCourses($id_enseignant)
+    {
+        $db = Database::getInstance()->getConnection();
+        $sql = "SELECT * FROM cours co join categories ca on co.category_id = ca.id_category join enseignants en on co.id_enseignant = en.id_enseignant join utilisateurs u on en.id_utilisateur = u.id_utilisateur WHERE en.id_utilisateur = :id_utilisateur order by co.id_cour";
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':id_utilisateur', $id_enseignant);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
 
     public function __get($attr)
     {
